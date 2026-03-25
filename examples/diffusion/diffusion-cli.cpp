@@ -560,6 +560,7 @@ int main(int argc, char ** argv) {
     model_params.use_direct_io      = params.use_direct_io;
     model_params.use_mlock          = params.use_mlock;
     model_params.check_tensors      = params.check_tensors;
+    model_params.use_moe_streaming  = params.use_moe_streaming;
 
     llama_model * model = llama_model_load_from_file(params.model.path.c_str(), model_params);
     if (!model) {
