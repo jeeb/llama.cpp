@@ -2282,6 +2282,14 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         }
     ).set_env("LLAMA_ARG_CPU_MOE"));
     add_opt(common_arg(
+        {"--moe-streaming"},
+        {"--no-moe-streaming"},
+        string_format("whether to do expert-slice streaming with compatible MoE models (default: %s)", params.moe_streaming ? "enabled" : "disabled"),
+        [](common_params & params, bool value) {
+            params.moe_streaming = value;
+        }
+    ).set_env("LLAMA_ARG_MOE_STREAMING"));
+    add_opt(common_arg(
         {"-ncmoe", "--n-cpu-moe"}, "N",
         "keep the Mixture of Experts (MoE) weights of the first N layers in the CPU",
         [](common_params & params, int value) {
